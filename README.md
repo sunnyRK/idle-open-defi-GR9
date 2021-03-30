@@ -17,10 +17,10 @@ Where strategy consumes a `DAI` token and internall it will call `mint` of Curve
 
 ## Run
 
-`Download code`
+`Download code`  
 1). Clone repo
 
-`Install dependency`
+`Install dependency`  
 2). yarn
 
 `to run on mainnet fork`  
