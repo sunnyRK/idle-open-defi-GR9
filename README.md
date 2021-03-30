@@ -8,12 +8,12 @@ Where strategy consumes a `DAI` token and internall it will call `mint` of Curve
 
 ## IdleCurve Strategy Code and test case:
 
-`Strategy:` You can find code in `contracts/wrappers/IdleCreamDAI.sol` path.  
-[Clieck here to go strategy code](https://github.com/sunnyRK/idle-open-defi-GR/blob/master/contracts/wrappers/IdleCurve.sol)
+`Strategy:` You can find code in `contracts/wrappers/IdleCurve.sol` path.  
+[Clieck here to go strategy code](https://github.com/sunnyRK/idle-open-defi-GR9/blob/master/contracts/wrappers/IdleCurve.sol)
 
 
 `Test-case:` You can find test case in `test/IdleCurve.js` path.  
-[Click here to go test cases](https://github.com/sunnyRK/idle-open-defi-GR/blob/master/test/idleCurve.js)  
+[Click here to go test cases](https://github.com/sunnyRK/idle-open-defi-GR9/blob/master/test/idleCurve.js)  
 
 ## Run
 
