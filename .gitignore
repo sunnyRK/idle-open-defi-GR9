@@ -73,3 +73,5 @@ build
 migrations_foo
 flatten
 buidler.config.js
+
+artifacts/

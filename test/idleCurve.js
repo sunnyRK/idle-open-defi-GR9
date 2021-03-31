@@ -75,12 +75,21 @@ describe("deployed Contract on Mainnet fork", function() {
         accounts[0].address
     )
     await daiContract.approve(curveStablecoinContract.address, '1000000000000000000000000000000000')
-    await daiContract.transfer(IdleCurve_Instance.address, '10000000')
-    await IdleCurve_Instance.mint() //// Mint Tokens or BuyTokens 
+    await daiContract.transfer(IdleCurve_Instance.address, '1000000000000000000')
 
     let crvContract = new ethers.Contract(crvAddress, daiAbi, signer)
-    await crvContract.transfer(IdleCurve_Instance.address, crvContract.balanceOf(accounts[0].address))
-    await IdleCurve_Instance.redeem(IdleCurve_Instance.address) //// Idle Redeem or SellTokens from BarnBeidge 
+
+    const bal0 = await crvContract.balanceOf(accounts[0].address);
+    console.log('balanceOf0 crv before mint: ', bal0.toString());
+    await IdleCurve_Instance.mint() //// Mint Tokens or BuyTokens
+    const bal1 = await crvContract.balanceOf(accounts[0].address);
+    console.log('balanceOf1 crv after mint: ', bal1.toString());
+
+
+    // await IdleCurve_Instance.mint() //// Mint Tokens or BuyTokens 
+    // let crvContract = new ethers.Contract(crvAddress, daiAbi, signer)
+    // await crvContract.transfer(IdleCurve_Instance.address, crvContract.balanceOf(accounts[0].address))
+    // await IdleCurve_Instance.redeem(IdleCurve_Instance.address) //// Idle Redeem or SellTokens from BarnBeidge 
 
   });
 

@@ -94,9 +94,7 @@ contract IdleCurve is ILendingProtocol, Ownable {
   function getPriceInToken()
     external view
     returns (uint256) {
-      // uint256 _want = IERC20(crvToken).balanceOf(address(this));
-      // uint256 v = _want.mul(1e18).div(ICurveStablecoin(token).get_virtual_price());
-      return 10**18; // working on this
+      return ICurveStablecoin(_token).get_virtual_price();
   }
 
   /**
