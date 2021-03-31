@@ -4,7 +4,7 @@
 
 I have used Idle finance interface `ILendingProtocol` to starture for strategy.
 
-Where strategy consumes a `DAI` token and internall it will call `mint` of Curve.fi: DAI/USDC/USDT Pool and get CRV DAO token.
+Where strategy consumes a `DAI` token and internal it will call `mint` of Curve.fi: DAI/USDC/USDT Pool and get CRV DAO token.
 
 ## IdleCurve Strategy Code and test case:
 

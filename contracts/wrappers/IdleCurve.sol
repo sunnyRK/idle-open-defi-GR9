@@ -32,10 +32,10 @@ contract IdleCurve is ILendingProtocol, Ownable {
   using SafeMath for uint256;
 
   // protocol contract (Curve.fi: DAI/USDC/USDT Pool) address
-  address public token;
-
+  address public token; // 3Pool Contract not ERC20(below is 3Pool share crv token)
   // protocol token (crv token) address
   address public crvToken = 0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490;
+
   // underlying token (token eg DAI) address
   address public underlying;
 
@@ -53,6 +53,7 @@ contract IdleCurve is ILendingProtocol, Ownable {
     token = _token;
     underlying = address(ICurveStablecoin(_token).coins(0));
     idleToken = _idleToken;
+
     IERC20(underlying).safeApprove(_token, 0);
     IERC20(underlying).safeApprove(_token, uint256(-1));
     
@@ -72,7 +73,7 @@ contract IdleCurve is ILendingProtocol, Ownable {
   function nextSupplyRateWithParams(uint256[] memory params)
     public view
     returns (uint256) {
-      return 0;
+      return 0; // working on this
   }
 
   /**
@@ -84,7 +85,7 @@ contract IdleCurve is ILendingProtocol, Ownable {
   function nextSupplyRate(uint256 _amount)
     external view
     returns (uint256) {
-      return 0;
+      return 0; // working on this
   }
 
   /**
@@ -95,7 +96,7 @@ contract IdleCurve is ILendingProtocol, Ownable {
     returns (uint256) {
       // uint256 _want = IERC20(crvToken).balanceOf(address(this));
       // uint256 v = _want.mul(1e18).div(ICurveStablecoin(token).get_virtual_price());
-      return 10**18;
+      return 10**18; // working on this
   }
 
   /**
@@ -104,7 +105,7 @@ contract IdleCurve is ILendingProtocol, Ownable {
   function getAPR()
     external view
     returns (uint256) {
-      return 0;
+      return 0; // working on this
   }
 
   /**
@@ -118,11 +119,16 @@ contract IdleCurve is ILendingProtocol, Ownable {
     external onlyIdle
     returns (uint256 crvTokens) {
       uint256 balance = IERC20(underlying).balanceOf(address(this));
+      
       if (balance == 0) {
         return crvTokens;
       }
-      ICurveStablecoin(token).add_liquidity([balance, 0, 0], 0);
+      ICurveStablecoin(token).add_liquidity(
+        [balance, 0, 0], 
+        0
+      );
       crvTokens = IERC20(crvToken).balanceOf(address(this));
+
       IERC20(crvToken).safeTransfer(msg.sender, crvTokens); 
   }
 
@@ -141,8 +147,11 @@ contract IdleCurve is ILendingProtocol, Ownable {
       0,
       0
     );
+
     IERC20 _underlying = IERC20(underlying);
+    
     tokens = _underlying.balanceOf(address(this));
+    
     _underlying.safeTransfer(_account, tokens);
   }
 
